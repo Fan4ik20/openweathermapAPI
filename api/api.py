@@ -166,7 +166,8 @@ class MovingAverageApi(Resource):
         moving_average = None
         try:
             moving_average = calculate_moving_average(
-                [value[0] for value in column_values], int(n)
+                [value[0] if value[0] else 0 for value in column_values],
+                int(n)
             )
         except ValueError as error:
             abort(404, msg=str(error))
@@ -177,4 +178,4 @@ class MovingAverageApi(Resource):
 api.add_resource(CitiesApi, '/api/v1/cities/')
 api.add_resource(MeanApi, '/api/v1/mean/')
 api.add_resource(RecordsApi, '/api/v1/records/')
-api.add_resource(MovingAverageApi, '/api/v1/moving_average/')
+api.add_resource(MovingAverageApi, '/api/v1/moving_mean/')

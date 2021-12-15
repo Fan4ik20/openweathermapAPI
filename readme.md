@@ -2,7 +2,7 @@
 ## Overview
 This program contains two main parts:
 - OpenWeatherMap data parser
-- API that represents parsed data  
+- API that represents parsed data (api docs you can find on `/apidocs/` endpoint)
 
 ## Requirements
 All necessary requirements is specified in the requirements.txt file
