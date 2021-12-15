@@ -1,0 +1,9 @@
+Returns information about all available cities in JSON format.
+---
+tags:
+ - Cities
+responses:
+ 200:
+   description: Returns a information about all available cities in JSON format.
+ 404:
+   description: Occurs if there is no information about any city.

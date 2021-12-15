@@ -1,0 +1,30 @@
+Returns the moving average values for the specified parameter in JSON format.
+---
+parameters:
+ - in: query
+   name: city
+   type: string
+   required: true
+   default: 'Kyiv'
+   description: The city for which the moving average value of the parameter will be calculated.
+ - in: query
+   name: value_type
+   type: string
+   enum: ['temp', 'pcp', 'clouds', 'pressure', 'humidity', 'wind_speed']
+   required: true
+   description: Value for calculating.
+ - in: query
+   name: n
+   type: integer
+   required: true
+   description: Parameter for calculating moving_average. Cannot be greater than the data count for individual city.
+   default: 4
+
+tags:
+ - Moving Average
+
+responses:
+ 200:
+   description: Returns the moving average values for the specified parameter in JSON format.
+ 404:
+   description: Occurs if not all parameters was passed or if n parameter is greater than the length of data.

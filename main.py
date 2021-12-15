@@ -1,4 +1,5 @@
 from app import app
+from api import api
 from filler_db_openweather_data.filler import fill_db
 
 if __name__ == '__main__':
@@ -10,4 +11,7 @@ if __name__ == '__main__':
         ('Dnipro', 48.45, 34.9833),
     ]
 
-    fill_db(cities)
+    # fill_db(cities)
+
+    app.run()
+

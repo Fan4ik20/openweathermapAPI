@@ -3,9 +3,11 @@ from typing import List
 from weather_db.db_manager import City, WeatherForecast
 
 from openweathermap.weather_parser import OpenWeatherMapParser
-from converters.converters import convert_openweather_data_to_desired_format
+from support_functions.converters import (
+    convert_openweather_data_to_desired_format
+)
 
-from secrets import openweathermap_key
+from secrets_ import openweathermap_key
 
 
 def send_request_to_cities(cities: List[tuple]) -> List[dict]:

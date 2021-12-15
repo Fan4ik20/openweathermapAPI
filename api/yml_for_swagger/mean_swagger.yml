@@ -1,0 +1,24 @@
+Returns the average value for the specified parameter in JSON format.
+---
+parameters:
+ - in: query
+   name: city
+   type: string
+   required: true
+   default: 'Kyiv'
+   description: The city for which the average value of the parameter will be calculated.
+ - in: query
+   name: value_type
+   type: string
+   enum: ['temp', 'pcp', 'clouds', 'pressure', 'humidity', 'wind_speed']
+   required: true
+   description: Value for calculating.
+
+tags:
+ - Mean
+
+responses:
+ 200:
+   description: Returns the average value for the specified parameter in JSON format.
+ 404:
+   description: Occurs if not all parameters was passed or if value_type is wrong.

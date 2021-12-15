@@ -1,0 +1,28 @@
+Returns all data about the weather forecast in the specified time interval in JSON format.
+---
+parameters:
+ - in: query
+   name: city
+   type: string
+   required: true
+   default: 'Kyiv'
+   description: The city for which forecast data will be returned.
+ - in: query
+   name: start_dt
+   type: string
+   required: true
+   description: Start date of the time interval. Date Format - YYYY-MM-DD
+ - in: query
+   name: end_dt
+   type: string
+   required: true
+   description: End date of the time interval. Date Format - YYYY-MM-DD
+
+tags:
+ - Records
+
+responses:
+ 200:
+   description: Returns all data about the weather forecast in the specified time interval in JSON format.
+ 404:
+   description: Occurs if not all parameters was passed.
