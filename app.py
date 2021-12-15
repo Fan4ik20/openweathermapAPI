@@ -1,3 +1,5 @@
+"""Module with app settings."""
+
 from flask import Flask
 
 app = Flask(__name__)

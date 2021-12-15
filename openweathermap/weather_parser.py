@@ -1,4 +1,4 @@
-"""This module contains functions
+"""This module contains class
 for sending requests to the openweathermap API.
 
 """
@@ -12,6 +12,8 @@ class OpenWeatherMapParser:
         self._api_key = weather_api_key
 
     def _send_daily_one_call_request(self, coords: tuple) -> dict:
+        """Sends a request to the onecall API openweathermap endpoint."""
+
         lat, lon = coords
 
         data = requests.get(

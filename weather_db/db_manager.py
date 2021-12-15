@@ -21,6 +21,8 @@ def _db_connect(db_name) -> None:
 
 
 class WeatherDb:
+    """A class for initializing, deleting tables in the Weather database."""
+
     @staticmethod
     def create_city_table() -> None:
         with _db_connect(weather_db) as cur:
@@ -83,6 +85,8 @@ class WeatherDb:
 
 
 class City:
+    """Class that contains methods for main operations with City table."""
+
     _sql_for_insert = (
         '''INSERT INTO City("name", latitude, longitude) VALUES (
             ?, ?, ?
@@ -135,6 +139,11 @@ class City:
 
 
 class WeatherForecast:
+    """Class that contains methods for main operations
+     with WeatherForecast table.
+
+     """
+
     _sql_for_insert = (
         '''INSERT INTO WeatherForecast(
             city_id, "date", temp, pcp, clouds, pressure, humidity, wind_speed
