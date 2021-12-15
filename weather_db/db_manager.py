@@ -7,8 +7,6 @@ from contextlib import contextmanager
 from typing import List, Union
 
 from app import db_name as weather_db
-from openweathermap.weather_parser import OpenWeatherMapParser
-from secrets import openweathermap_key
 
 
 @contextmanager
@@ -46,7 +44,7 @@ class WeatherDb:
                         forecast_id INTEGER PRIMARY KEY,
                         date TEXT NOT NULL,
                         temp FLOAT NOT NULL,
-                        pcp FLOAT NOT NULL,
+                        pcp FLOAT,
                         clouds INT NOT NULL,
                         pressure INT NOT NULL,
                         humidity TINYINT NOT NULL,
@@ -139,8 +137,7 @@ class City:
 class WeatherForecast:
     _sql_for_insert = (
         '''INSERT INTO WeatherForecast(
-            "date", temp, pcp, clouds, pressure, humidity, wind_speed
-            city_id
+            city_id, "date", temp, pcp, clouds, pressure, humidity, wind_speed
         ) VALUES (
             ?, ?, ?, ?, ?, ?, ?, ?
         );'''
@@ -148,8 +145,8 @@ class WeatherForecast:
 
     @classmethod
     def insert_weather_forecast(
-            cls, date: str, temp: float, pcp: float, clouds: int,
-            pressure: int, humidity: int, wind_speed: float, city_name: str
+            cls,  city_name: str, date: str, temp: float, pcp: float,
+            clouds: int, pressure: int, humidity: int, wind_speed: float
     ) -> None:
         city_id = City.get_city_id_by_name(city_name)
 
@@ -157,8 +154,8 @@ class WeatherForecast:
             cur.execute(
                 cls._sql_for_insert,
                 (
-                    date, temp, pcp, clouds,
-                    pressure, humidity, wind_speed, city_id
+                    city_id, date, temp, pcp, clouds,
+                    pressure, humidity, wind_speed
                 )
             )
 

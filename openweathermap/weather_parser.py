@@ -17,6 +17,7 @@ class OpenWeatherMapParser:
         data = requests.get(
             'https://api.openweathermap.org/data/2.5/'
             f'onecall?lat={lat}&lon={lon}&exclude=current,minutely,hourly'
+            '&units=metric'
             f'&appid={self._api_key}&lang=ua'
         ).json()
 
@@ -26,7 +27,7 @@ class OpenWeatherMapParser:
         return self._send_daily_one_call_request(coords)
 
     @staticmethod
-    def write_request_data(data: dict, filepath: str) -> None:
+    def write_json_data(data: dict, filepath: str) -> None:
         with open(filepath, 'w', encoding='utf-8') as file:
             json.dump(data, file, indent=4)
 
@@ -36,19 +37,11 @@ class OpenWeatherMapParser:
 
         data = self._send_daily_one_call_request(coords)
 
-        self.write_request_data(data, filepath)
+        self.write_json_data(data, filepath)
 
         return data
 
     @staticmethod
-    def read_request_data_from_file(filepath: str) -> dict:
+    def read_json_data_from_file(filepath: str) -> dict:
         with open(filepath, encoding='utf-8') as file:
             return json.load(file)
-
-
-def main():
-    pass
-
-
-if __name__ == '__main__':
-    main()
