@@ -19,6 +19,8 @@ def convert_unix_time_to_date(unix_time: int) -> str:
 
 
 def _convert_daily_data(daily_data: list) -> list:
+    """Support function for structuring forecast data for each day in list."""
+
     daily_list = []
 
     for data in daily_data:

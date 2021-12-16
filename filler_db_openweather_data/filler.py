@@ -1,3 +1,5 @@
+import os
+
 from typing import List
 
 from weather_db.db_manager import City, WeatherForecast
@@ -7,16 +9,14 @@ from support_functions.converters import (
     convert_openweather_data_to_desired_format
 )
 
-from secrets_ import openweathermap_key
 
-
-def send_requests_for_cities(cities: List[tuple]) -> List[dict]:
+def send_requests_for_cities(api_key: str, cities: List[tuple]) -> List[dict]:
     """For every city sends request to openweather API.
     All received data are placed in a list that will be returned.
 
     """
 
-    parser = OpenWeatherMapParser(openweathermap_key)
+    parser = OpenWeatherMapParser(api_key)
 
     received_data = []
 
@@ -41,7 +41,10 @@ def _create_weather_data_to_insert(converted_data: dict) -> list:
     return data_to_insert
 
 
-def fill_db(cities: List[tuple]) -> None:
+def fill_weather_db(
+        cities: List[tuple], api_key: str = os.getenv('openweathermap_key')
+) -> None:
+
     """Function for filling the database. Depending on the specified cities,
     it sends requests to the openweathermap API,
     converts the raw data into a single format
@@ -51,7 +54,7 @@ def fill_db(cities: List[tuple]) -> None:
 
     City.insert_cities(cities)
 
-    received_weather_list = send_requests_for_cities(cities)
+    received_weather_list = send_requests_for_cities(api_key, cities)
 
     weather_list_length = len(received_weather_list)
     for index, weather_data in enumerate(received_weather_list):
