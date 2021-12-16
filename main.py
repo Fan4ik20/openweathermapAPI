@@ -1,7 +1,6 @@
 from app import app
 from api import api
 from filler_db_openweather_data.filler import fill_weather_db
-from weather_db.db_manager import WeatherDb
 
 if __name__ == '__main__':
     cities = [
@@ -13,4 +12,4 @@ if __name__ == '__main__':
     ]
 
     # fill_weather_db(cities)
-    # app.run()
+    app.run()
