@@ -11,7 +11,7 @@ All necessary requirements is specified in the requirements.txt file
 ## Installation
 - Install all python modules via command `pip install -r requirements.txt`
 
-## Running.
+## Running
 - At the first launch you will need to fill in the database (or you can use an existing).  
 To do this you can use `fill_weather_db` function from `filler_db_openweather_data.filler` module  
 To use the function it is necessary to provide the variable env openweathermap_key  
